@@ -13,7 +13,7 @@ class PassportController extends Controller
      */
     public function index()
     {
-        $passports = \App\Passport::all();
+        $passports = \App\Passport::paginate(15);
         return view('index', compact('passports'));
     }
 
@@ -39,6 +39,7 @@ class PassportController extends Controller
             $file = $request->file('filename');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
+            $passport->filename = $name;
         }
         $passport = new \App\Passport;
         $passport->name = $request->get('name');
@@ -46,9 +47,8 @@ class PassportController extends Controller
         $passport->number = $request->get('number');
         $date = date_create($request->get('date'));
         $format = date_format($date, "Y-m-d");
-        $passport->date = \strtotime($format);
+        $passport->date = strtotime($format);
         $passport->office = $request->get('office');
-        $passport->filename = $name;
         $passport->save();
 
         return \redirect('passports')->with('success', 'Information added');
@@ -96,11 +96,11 @@ class PassportController extends Controller
             $file = $request->file('filename');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
+            $passport->filename = $name;
         }
         $date = date_create($request->get('date'));
         $format = date_format($date, "Y-m-d");
-        $passport->date = \strtotime($format);
-        $passport->filename = $name;
+        $passport->date = strtotime($format);
 
         $passport->save();
 

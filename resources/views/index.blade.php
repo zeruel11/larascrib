@@ -52,6 +52,7 @@
         @endforeach
         </tbody>
     </table>
+    {{ $passports->links() }}
     </div>
 </body>
 </html>

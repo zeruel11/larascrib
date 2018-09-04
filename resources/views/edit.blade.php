@@ -6,6 +6,11 @@
     <title>Laravel CRUD - Update Passport</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('css/app.css')}}" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
     <div class="container">
@@ -36,6 +41,19 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
+                <div class="form-group col-md-4">
+                    <strong>Date :</strong>
+                    <input type="text" name="date" id="datepicker" class="date form-control" value="{{gmdate('d-m-Y', $passport->date)}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="form-group col-md-4">
+                    <input type="file" name="filename" value="{{$passport->filename}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
                 <div class="col-md-4 form-group" style="margin-left:38px">
                     <label>Passport Office</label>
                     <select name="office">
@@ -54,5 +72,11 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: 'dd-mm-yyyy'
+        });
+    </script>
 </body>
 </html>
