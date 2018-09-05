@@ -1,4 +1,9 @@
 <?php
+// Copyright (c) 2018 zeruel11
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 
 namespace App\Http\Controllers;
 
@@ -91,7 +96,7 @@ class PassportController extends Controller
         $passport->email=$request->get('email');
         $passport->number=$request->get('number');
         $passport->office=$request->get('office');
-        
+
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time().$file->getClientOriginalName();
